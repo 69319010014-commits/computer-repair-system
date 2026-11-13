@@ -20,3 +20,4 @@
 ดูไฟล์ใน `docs/uml/`
 
 > ไม่รวม `node_modules` และ `.env` ใน Git
+Project status: UML diagrams and Back-End project structure completed.
