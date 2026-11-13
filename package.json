@@ -1,0 +1,8 @@
+{
+  "name": "computer-repair-system",
+  "version": "1.0.0",
+  "description": "Backend API structure for college computer repair system",
+  "main": "src/server.js",
+  "scripts": { "start": "node src/server.js", "dev": "node src/server.js" },
+  "dependencies": { "express": "^5.1.0" }
+}

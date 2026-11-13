@@ -1,0 +1,21 @@
+
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad=0.3, nodesep=0.55, ranksep=0.8, fontname="Noto Sans Thai"];
+  node [shape=record, fontname="Noto Sans Thai", fontsize=10];
+  edge [fontname="Noto Sans Thai", fontsize=9];
+
+  User [label="{User|+ userId: int\l+ name: string\l+ username: string\l+ role: string\l|+ login()\l+ viewHistory()\l}"];
+  Room [label="{Room|+ roomId: int\l+ roomName: string\l+ location: string\l|+ addRoom()\l+ updateRoom()\l}"];
+  Computer [label="{Computer|+ computerId: int\l+ assetCode: string\l+ roomId: int\l+ status: string\l|+ getRepairHistory()\l+ updateComputer()\l}"];
+  RepairRequest [label="{RepairRequest|+ requestId: int\l+ reportedAt: datetime\l+ symptom: string\l+ status: string\l+ cancelledAt: datetime\l+ reporterId: int\l+ computerId: int\l+ technicianId: int\l|+ create()\l+ cancel()\l+ assignTechnician()\l+ updateStatus()\l}"];
+  RepairLog [label="{RepairLog|+ logId: int\l+ requestId: int\l+ repairDetail: string\l+ repairedAt: datetime\l|+ recordRepair()\l}"];
+  Report [label="{Report|+ reportId: int\l+ period: string\l+ roomId: int\l+ pendingCount: int\l+ completedCount: int\l|+ summarizeByRoom()\l}"];
+
+  User -> RepairRequest [label="ผู้แจ้ง 1 .. *"];
+  User -> RepairRequest [label="ช่าง 0 .. *", style=dashed];
+  Room -> Computer [label="มี 1 .. *"];
+  Computer -> RepairRequest [label="มีประวัติ 1 .. *"];
+  RepairRequest -> RepairLog [label="บันทึกผล 0 .. *"];
+  Room -> Report [label="สรุปตามห้อง 1 .. *"];
+  User -> Report [label="หัวหน้างานดู 1 .. *", style=dashed];
+}

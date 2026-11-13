@@ -1,0 +1,65 @@
+
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad=0.3, nodesep=0.45, ranksep=0.8, fontname="Noto Sans Thai"];
+  node [shape=box, style="rounded", fontname="Noto Sans Thai", fontsize=11];
+  edge [fontname="Noto Sans Thai", fontsize=9];
+
+  subgraph cluster_system {
+    label="ระบบแจ้งซ่อมคอมพิวเตอร์และอุปกรณ์ของวิทยาลัย";
+    fontname="Noto Sans Thai"; fontsize=14; style="rounded";
+
+    login [label="เข้าสู่ระบบ"];
+    submit [label="แจ้งซ่อม"];
+    track [label="ติดตามสถานะงาน"];
+    history_user [label="ดูประวัติการแจ้งซ่อม"];
+    cancel [label="ยกเลิกการแจ้งซ่อม"];
+
+    pending [label="ดูรายการงานรอซ่อม"];
+    accept [label="รับงานซ่อม"];
+    update [label="อัปเดตสถานะงาน"];
+    record [label="บันทึกผลการซ่อม"];
+    history_pc [label="ดูประวัติการซ่อมของเครื่อง"];
+
+    summary [label="ดูสรุปงานซ่อม"];
+    assign [label="มอบหมายงานด่วนให้ช่าง"];
+    room [label="เพิ่ม/แก้ไขข้อมูลห้อง"];
+    computer [label="เพิ่ม/แก้ไขข้อมูลเครื่อง"];
+
+    submit -> login [label="<<include>>"];
+    track -> login [label="<<include>>"];
+    history_user -> login [label="<<include>>"];
+    cancel -> login [label="<<include>>"];
+    pending -> login [label="<<include>>"];
+    accept -> login [label="<<include>>"];
+    update -> login [label="<<include>>"];
+    record -> login [label="<<include>>"];
+    history_pc -> login [label="<<include>>"];
+    summary -> login [label="<<include>>"];
+    assign -> login [label="<<include>>"];
+    room -> login [label="<<include>>"];
+    computer -> login [label="<<include>>"];
+  }
+
+  reporter [shape=box, label="ผู้แจ้ง\nนักศึกษา / ครูผู้สอน"];
+  tech [shape=box, label="ช่างเทคนิค"];
+  supervisor [shape=box, label="หัวหน้างาน"];
+
+  reporter -> login;
+  reporter -> submit;
+  reporter -> track;
+  reporter -> history_user;
+  reporter -> cancel;
+
+  tech -> login;
+  tech -> pending;
+  tech -> accept;
+  tech -> update;
+  tech -> record;
+  tech -> history_pc;
+
+  supervisor -> login;
+  supervisor -> summary;
+  supervisor -> assign;
+  supervisor -> room;
+  supervisor -> computer;
+}
